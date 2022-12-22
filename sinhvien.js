@@ -37,27 +37,31 @@ const students = [
 ];
 
 
-function addPoint(a) {
-    a.forEach(element => {
-        element['toan'] = Math.floor(Math.random() * 10);
-        element['ly'] = Math.floor(Math.random() * 10);
-        element['hoa'] = Math.floor(Math.random() * 10);
 
-    });
-    console.log(a)
+function addPoint(a) {
+    // a.forEach(element => {
+    //     element['toan'] = Math.floor(Math.random() * 10);
+    //     element['ly'] = Math.floor(Math.random() * 10);
+    //     element['hoa'] = Math.floor(Math.random() * 10);
+
+    // });
+    // console.log(a)
+    a.map(function(b){
+        b['toan'] = Math.floor(Math.random() * 10)
+        b['ly'] = Math.floor(Math.random() * 10)
+        b['hoa'] = Math.floor(Math.random() * 10)
+    })
+    console.log(students)
 }
 addPoint(students)
 
 function display(a) {
-    a.forEach(element => {
-        console.log({
-            id: `${element.id}`,
-            name: `${element.name}`,
-            address: `${element.address}`,
-            toan: `${element.toan}`,
-            ly: `${element.ly}`,
-            hoa: `${element.hoa}`,
-        })
-    })
+        for (let i = 0 ; i < a.length ; i++) {
+            for ( var key in a[i]){
+                console.log(key+':'+a[i][key])
+            }
+            console.log("-----------------------")
+        }
+   
 }
 display(students);

@@ -118,7 +118,13 @@ function input(a) {
 
 // 2 . Xuất dữ liệu 
 function show(a) {
-    console.log(a);
+    for (let i = 0 ; i < a.length ; i++) {
+        for ( var key in a[i]){
+            console.log(key+':'+a[i][key])
+        }
+        console.log("-----------------------")
+    }
+
 }
 
 
@@ -141,7 +147,7 @@ function filterGoodStudent(a) {
     var student = a.filter(function (b) {
         return (b.toan >= 8 && b.ly >= 8 && b.hoa >= 8);
     })
-    console.log(student);
+    show(student);
 }
 
 //5 . Cộng mỗi sinh viên 1 điểm toán
@@ -164,9 +170,9 @@ function sum(a) {
     var sum = 0;
     a.forEach(element => {
         sum = element.toan + element.ly + element.hoa;
-        console.log(sum)
+        element['sum'] = element.toan + element.ly + element.hoa;
     });
-
+show(a);
 }
 //7. Tính tổng điểm các sinh viên 
 function sum1(a) {
@@ -176,16 +182,17 @@ function sum1(a) {
         sum = element.toan + element.ly + element.hoa;
         allSum += sum;
     });
-    console.log(allSum)
+    console.log('Tổng điểm các sinh viên'+allSum)
 }
 //8. Sắp xếp danh sách sinh viên theo tổng điểm tăng dần 
 function sort(a) {
-    a.forEach(element => {
-        element['sum'] = element.toan + element.ly + element.hoa;
-    })
+    // a.forEach(element => {
+    //     element['total'] = element.toan + element.ly + element.hoa;
+    // })
     a.sort(function (a, b) {
         return a.sum - b.sum;
     })
+    show(a);
 }
 //9.Tính điểm trung bình của các sinh viên
 function totalPoint(a) {
