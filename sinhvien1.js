@@ -108,9 +108,9 @@ function input(a) {
     var newStudent = {
         id: a.length + 1,
         name: prompt('Nhập  tên :'),
-        toan: prompt('Nhập điểm toán :'),
-        ly: prompt('Nhập điểm lý :'),
-        hoa: prompt('Nhập điểm hóa :')
+        toan: Number(prompt('Nhập điểm toán :')),
+        ly: Number(prompt('Nhập điểm lý :')),
+        hoa: Number(prompt('Nhập điểm hóa :'))
     }
     a.push(newStudent);
 }
@@ -134,6 +134,7 @@ function findStudent(a) {
     var student = a.find(function (b) {
         if (numID > a.length) {
             alert('Không tìm thấy')
+            show(b.numID)
         } else {
             return b.id === numID;
         }
