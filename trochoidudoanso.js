@@ -15,6 +15,7 @@ function random() {
         wrongNumberElement.innerHTML = "Bạn đã đoán sai"
     }
     let totalElement = document.getElementById('total');
+    totalElement.style.color = 'red'
     totalElement.innerHTML = "Tổng điểm :" + flag;
     numberValue.value = '';
 }
