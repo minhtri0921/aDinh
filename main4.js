@@ -37,46 +37,66 @@ const students = [
 ];
 
 
-function render(students){
+function render(students) {
     var a = document.querySelector('.list-students')
-    var str = '' 
-    for ( const element of students){
+    var str = ''
+    for (const element of students) {
         str += render1(element);
     }
     a.innerHTML = str
 }
-function render1(element){
+function render1(element) {
     return `<li><h2>Name:${element.name}</h2>
     <p>Addres: ${element.address}<p>
     <button onclick ="edit(${element.id})" >Sửa</button>
     <button onclick="remove(${element.id})">Xóa</button></li>`
 }
 render(students)
-function add(){
+
+function add() {
     let newName = document.getElementById('1').value
     let newAddress = document.getElementById('2').value
-     let newStudent = {
-     id : students.length+1,
-    name : newName,
-     address : newAddress
- }
- students.push(newStudent)
-    render(students)
-}
-function edit(id){
-    let newName = prompt("Nhập tên muốn sửa :")
-    let newAddress = prompt('Nhập địa chỉ muốn sửa : ')
-    let studentEdit = {
-        id: id,
+    let newStudent = {
+        id:students.length+1,
         name: newName,
-        diachi: newAddress
+        address: newAddress
     }
-    console.log(students)
-    students[id - 1] = studentEdit;
+    students.unshift(newStudent)
+    document.getElementById('1').value = '';
+    document.getElementById('2').value = '';
     render(students)
 }
-function remove(id){
-    let studentDelete = id
-    students.splice(studentDelete-1, 1)
-   render(students)
+function edit(id) {
+    let index = students.findIndex(function(std){
+        return std.id == id 
+     })
+    var editStudent = students.find(function(st){
+        return st.id == id ; 
+    })
+    console.log(editStudent)
+    document.getElementById('1').value = editStudent.name
+    document.getElementById('2').value = editStudent.address
+    let upDateBtn = document.getElementById('update')
+    upDateBtn.style.display = 'block'
+    upDateBtn.onclick = function () {
+        let newName = document.getElementById('1').value
+        let newAddress = document.getElementById('2').value
+
+        editStudent = {
+            id: id,
+            name: newName,
+            address: newAddress
+        }
+        console.log(editStudent)    
+        students[index] = editStudent;
+        render(students)
+    }
+
+}
+function remove(id) {
+    let index = students.findIndex(function(std){
+       return std.id == id 
+    })
+    students.splice(index,1)
+    render(students)
 }
