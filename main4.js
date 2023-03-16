@@ -1,102 +1,41 @@
-const students = [
+const listNews = [
     {
         id: 1,
-        name: "Dinh",
-        address: "hue"
+        img: 'images/h1.jpg',
+        title: 'Cách phối đồ đi hẹn hò 8/3 đẹp như Quỳnh Anh Shyn',
+        content: '8/3 sắp đến rồi, những gợi ý mặc đẹp dưới đây sẽ giúp bạn chọn được bộ đồ ưng ý. Cùng học Quỳnh Anh Shyn một vài cách phối đồ cực hay ho để bạn đi hẹn hò 8/3 nhé!'
     },
     {
         id: 2,
-        name: "Nam",
-        address: "quang nam"
+        img: 'images/h2.jpg',
+        title: 'Diện đồ đôi cho teen đi hẹn hò ngày 8/3',
+        content: 'Những cặp đôi yêu nhau đã có ý tưởng nên mặc gì trong ngày 8/3 chưa? Những bộ đồ đôi vừa đẹp vừa thoải mái chắc chắn sẽ là gợi ý ăn mặc cho các bạn trẻ. Dưới đây là những bộ đồ đôi đẹp để teen tham ...'
     },
     {
         id: 3,
-        name: "Tan",
-        address: "da nang"
-    },
-    {
-        id: 4,
-        name: "Hung",
-        address: "hue"
-    },
-    {
-        id: 5,
-        name: "Tri",
-        address: "quang tri"
-    },
-    {
-        id: 6,
-        name: "Anh",
-        address: "hue"
-    },
-    {
-        id: 7,
-        name: "Binh",
-        address: "da nang"
+        img: 'images/h3.jpg',
+        title: 'Hướng dẫn chọn trang phục cho teengirl ngày 8/3',
+        content: 'Các teen girl nhà mình hẳn đang rất hào hứng chọn những bộ đồ thật đẹp để đi chơi 8/3. Những gợi ý ăn mặc dưới đây sẽ giúp các nàng có những set đồ thật đẹp để diện trong ngày 8.3 nhé!'
     }
-];
+]
 
+var heading = document.querySelector("h1");
+heading.innerText = 'Trang tin VinaEnter Edu';
 
-function render(students) {
-    var a = document.querySelector('.list-students')
-    var str = ''
-    for (const element of students) {
-        str += render1(element);
+function render(element){
+    return `<a href="#"><img src=${element.img} alt="h1.jpg" /></a>
+    <div class="khoiphai">
+        <h2><a href="#">${element.title}</a></h2>
+        <p>${element.content}</p>
+    </div>
+    <div class="clr"></div>`
+}
+function render1(list){
+    let a = document.querySelector('ul')
+    let str = ''
+    for (const element of list) {
+        str += render(element)
     }
-    a.innerHTML = str
+a.innerHTML = str
 }
-function render1(element) {
-    return `<li><h2>Name:${element.name}</h2>
-    <p>Addres: ${element.address}<p>
-    <button onclick ="edit(${element.id})" >Sửa</button>
-    <button onclick="remove(${element.id})">Xóa</button></li>`
-}
-render(students)
-
-function add() {
-    let newName = document.getElementById('1').value
-    let newAddress = document.getElementById('2').value
-    let newStudent = {
-        id:students.length+1,
-        name: newName,
-        address: newAddress
-    }
-    students.unshift(newStudent)
-    document.getElementById('1').value = '';
-    document.getElementById('2').value = '';
-    render(students)
-}
-function edit(id) {
-    let index = students.findIndex(function(std){
-        return std.id == id 
-     })
-    var editStudent = students.find(function(st){
-        return st.id == id ; 
-    })
-    console.log(editStudent)
-    document.getElementById('1').value = editStudent.name
-    document.getElementById('2').value = editStudent.address
-    let upDateBtn = document.getElementById('update')
-    upDateBtn.style.display = 'block'
-    upDateBtn.onclick = function () {
-        let newName = document.getElementById('1').value
-        let newAddress = document.getElementById('2').value
-
-        editStudent = {
-            id: id,
-            name: newName,
-            address: newAddress
-        }
-        console.log(editStudent)    
-        students[index] = editStudent;
-        render(students)
-    }
-
-}
-function remove(id) {
-    let index = students.findIndex(function(std){
-       return std.id == id 
-    })
-    students.splice(index,1)
-    render(students)
-}
+render1(listNews)

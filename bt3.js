@@ -47,6 +47,7 @@ students.forEach(function (student) {
     const classInfo = classList.find(function (name) {
         return name.id === student.classId;
     })
+    console.log(classInfo)
     if (classInfo.id === 1) {
         const it = {
             id: student.id,
@@ -56,5 +57,6 @@ students.forEach(function (student) {
         ITStudents.push(it);
     }
 })
+
 
 console.table(ITStudents);
